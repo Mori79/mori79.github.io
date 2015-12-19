@@ -207,7 +207,7 @@
             preview();
             createURL();
         }
-        window.onload = previewAndCreateURL;
+        window.onload = previewAndCreateURL();
         fileChooser.onchange = function() {
             var file = this.files[0],
                 reader = new FileReader();
