@@ -92,7 +92,7 @@
             border-width: 0 0 0 5px;
         }
         
-        .horizontal #viewerWrapper {
+        #viewerWrapper.horizontal {
             border-width: 5px 0 0;
         }
         
@@ -217,8 +217,8 @@
                 };
             }
         };
-        document.getElementById('viewsToggle').onchange = function() {
-            document.getElementById('main').classList.toggle('horizontal');
+        window.onload = document.getElementById('viewsToggle').onchange = function() {
+            document.getElementById('viewerWrapper').classList.toggle('horizontal');
             document.getElementById('main').style.flexDirection = this.value;
         };
         window.onload = resizer.oninput = function() {
