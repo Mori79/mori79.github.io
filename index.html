@@ -219,7 +219,8 @@
             }
         };
         window.onload = document.getElementById('viewsToggle').onchange = function() {
-            document.getElementById('main').classList.toggle('horizontal');
+            if (document.getElementById('viewsToggle').checked) {document.getElementById('main').className='horizontal'}
+else {document.getElementById('main').className=''}
         };
         window.onload = resizer.oninput = function() {
             var resizerVal = resizer.value;
