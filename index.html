@@ -4,25 +4,25 @@
 <head>
     <title>Colors Toggler</title>
     <style>
-        div {
+        textarea {
             width: 300px;
             height: 200px;
             background: teal;
         }
         
-        div.tan {
+        textarea.tan {
             background: tan;
         }
     </style>
 </head>
 
 <body>
+    <textarea id="textField">This is some text.</textarea>
     <label for="colorsToggler">Tan background</label>
     <input type="checkbox" id="colorsToggler">
-    <div id="box" contentEditable="true"></div>
     <script>
         document.getElementById('colorsToggler').onchange = function() {
-            document.getElementById('box').classList.toggle('tan');
+            document.getElementById('textField').classList.toggle('tan');
         };
     </script>
 </body>
