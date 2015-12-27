@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <div id="box" contentEditable="true"></div>
     <label for="colorsToggler">Tan background</label>
     <input type="checkbox" id="colorsToggler">
+    <div id="box" contentEditable="true"></div>
     <script>
         document.getElementById('colorsToggler').onchange = function() {
             document.getElementById('box').classList.toggle('tan');
