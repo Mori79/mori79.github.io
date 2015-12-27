@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <textarea id="textField">This is some text.</textarea>
     <label for="colorsToggler">Tan background</label>
     <input type="checkbox" id="colorsToggler">
+    <textarea id="textField">This is some text.</textarea>
     <script>
         document.getElementById('colorsToggler').onchange = function() {
             document.getElementById('textField').classList.toggle('tan');
