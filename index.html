@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HTML Document Template</title>
-  </head>
-  <body>
-    <p>Hello, world!</p>
-  </body>
+
+<head>
+    <title>Colors Toggler</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            background: teal;
+        }
+        
+        div.tan {
+            background: tan;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <label for="colorsToggler">Tan background</label>
+    <input type="checkbox" id="colorsToggler">
+    <script>
+        document.getElementById('colorsToggler').onchange = function() {
+            document.getElementById('box').classList.toggle('tan');
+        };
+    </script>
+</body>
+
 </html>
