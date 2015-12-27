@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Colors Toggler</title>
+    <title>Colors Toggle</title>
     <style>
         textarea {
             width: 300px;
@@ -17,11 +17,11 @@
 </head>
 
 <body>
-    <label for="colorsToggler">Tan background</label>
-    <input type="checkbox" id="colorsToggler">
+    <label for="colorsToggle">Tan background</label>
+    <input type="checkbox" id="colorsToggle">
     <textarea id="textField">This is some text.</textarea>
     <script>
-        document.getElementById('colorsToggler').onchange = function() {
+        document.getElementById('colorsToggle').onchange = function() {
             document.getElementById('textField').classList.toggle('tan');
         };
     </script>
