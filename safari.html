@@ -48,11 +48,6 @@
       font: bold 11px arial;
     }
     
-    input {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-    
     #selector,
     #resizer,
     [title$="Twitter"] {
@@ -64,12 +59,22 @@
       margin-right: 5px;
     }
     
-    #fileChooser,
-    [title$="Facebook"] {
-      margin-right: auto;
+    #resetter {
+      margin: 0;
     }
     
+    #selector,
     #resizer {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    
+    #fileChooser {
+      margin: 0 auto 0 0;
+    }
+    
+    #resizer,
+    iframe {
       padding: 0;
     }
     
@@ -80,13 +85,11 @@
     
     #viewsToggler,
     #themesToggler {
-      margin-left: 5px;
-      margin-right: 10px;
+      margin: 0 10px 0 5px;
     }
     
     #more {
-      margin-left: 0;
-      margin-right: 0;
+      margin: 0;
       border: 0;
       padding: 0;
       background: transparent;
@@ -147,12 +150,12 @@
       color: #FFF;
     }
     
-    iframe {
-      padding: 0;
-    }
-    
     footer.shown {
       background: linear-gradient(#CCC, #FFF);
+    }
+    
+    [title$="Facebook"] {
+      margin-right: auto;
     }
     
     img {
