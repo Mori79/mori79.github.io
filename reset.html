@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reset</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <input type="text" id="box">
+    <input type="button" value="Reset" onclick="zero();">
+    <script>
+        var box = document.getElementById('box');
+
+        function zero() {
+            if (box.value && confirm('Sure?')) {
+                box.value = '';
+                alert('Done!');
+            }
+        }
+    </script>
+</body>
+
+</html>
