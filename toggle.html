@@ -22,10 +22,11 @@
   <input type="checkbox" id="colorsToggle">
   <textarea id="textField">Edit me!</textarea>
   <script>
-   document.getElementById('colorsToggle').onchange = function() {
-     document.getElementById('textField').classList.toggle('tan');
-   }
-   document.getElementById('textField').classList.toggle(document.getElementById('colorsToggle').checked?"tan":"white");
+    document.getElementById('colorsToggle').addEventListener('change', function() {
+      var textField = document.getElementById('textField');
+      if (this.checked) {textField.className = 'tan';}
+      else {textField.className = '';}
+    });
   </script>
 </body>
 
