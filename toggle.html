@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Colors Toggle - Demo Studio</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    textarea {
+      width: 300px;
+      height: 200px;
+    }
+    
+    textarea.tan {
+      background: tan;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="colorsToggle">Tan background</label>
+  <input type="checkbox" id="colorsToggle">
+  <textarea id="textField">Edit me!</textarea>
+  <script>
+   document.getElementById('colorsToggle').onchange = function() {
+     document.getElementById('textField').classList.toggle('tan');
+   }
+   document.getElementById('textField').classList.toggle(document.getElementById('colorsToggle').checked?"tan":"white");
+  </script>
+</body>
+
+</html>
