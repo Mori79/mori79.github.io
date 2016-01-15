@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="description" content="An online HTML editor with real-time preview">
   <title>HTML Pencil</title>
-  <base href="https://dl.dropboxusercontent.com/u/4017788/htmlpencil/static/">
-  <base target="_blank">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <base target="_blank">
   <style>
     * {
       color: #333;
@@ -29,7 +28,6 @@
     header,
     footer.shown {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       padding: 5px;
     }
@@ -92,8 +90,6 @@
     }
     
     div {
-      flex-shrink: 1;
-      flex-basis: 0%;
       position: relative;
     }
     
@@ -256,8 +252,8 @@
 
     function resize() {
       var resizerVal = resizer.value;
-      document.getElementById('editorWrapper').style.flexGrow = resizerVal;
-      document.getElementById('viewerWrapper').style.flexGrow = 100 - resizerVal;
+      document.getElementById('editorWrapper').style.flex = resizerVal;
+      document.getElementById('viewerWrapper').style.flex = 100 - resizerVal;
       document.getElementById('indicator').textContent = (resizerVal / 100).toFixed(2); // Edge doesn't support outputObject.value
     }
     resizer.addEventListener('input', resize);
