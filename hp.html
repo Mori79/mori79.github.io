@@ -28,6 +28,7 @@
     header,
     footer.shown {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       padding: 5px;
     }
@@ -90,6 +91,8 @@
     }
     
     div {
+      flex-shrink: 1;
+      flex-basis: 0;
       position: relative;
     }
     
@@ -252,8 +255,8 @@
 
     function resize() {
       var resizerVal = resizer.value;
-      document.getElementById('editorWrapper').style.flex = resizerVal;
-      document.getElementById('viewerWrapper').style.flex = 100 - resizerVal;
+      document.getElementById('editorWrapper').style.flexGrow = resizerVal;
+      document.getElementById('viewerWrapper').style.flexGrow = 100 - resizerVal;
       document.getElementById('indicator').textContent = (resizerVal / 100).toFixed(2); // Edge doesn't support outputObject.value
     }
     resizer.addEventListener('input', resize);
