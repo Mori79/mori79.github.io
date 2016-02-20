@@ -94,16 +94,12 @@
       flex-basis: 0;
       position: relative;
     }
-
-    #editorWrapper {
-z-index: 1;
-    }
     
     #viewerWrapper {
+order: 1;
       border-left: 5px solid #CCC;
-z-index: 3;
     }
-    iframe {z-index: 2;}
+    
     main.horizontal #viewerWrapper {
       border-left: 0;
       border-top: 5px solid #CCC;
@@ -119,7 +115,6 @@ z-index: 3;
     }
     
     textarea {
-      z-index: 0;
       box-sizing: border-box;
       padding: 5px;
       outline: 0;
@@ -174,6 +169,9 @@ z-index: 3;
     <input type="button" value="•••" title="More" id="more">
   </header>
   <main id="main">
+    <div id="viewerWrapper">
+      <iframe id="viewer"></iframe>
+    </div>
     <div id="editorWrapper">
        <textarea spellcheck="false" id="editor"><!DOCTYPE html>
 <html>
@@ -184,9 +182,6 @@ z-index: 3;
     <p>Hello, world!</p>
   </body>
 </html></textarea>
-    </div>
-    <div id="viewerWrapper">
-      <iframe id="viewer"></iframe>
     </div>
   </main>
   <footer hidden id="footer">
