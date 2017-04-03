@@ -3,12 +3,18 @@
   <head>
     <title>HTML Document Template</title>
 <style>
-html {height: 100%; 
-      background: linear-gradient(white, black);
-      }
+.wrap {outline:1px solid green;}
+.wrap .box {width:50px; height:50px; line-height:50px; text-align:center; font-weight:bold; font-size:20px; color:white; background:red;}
+
+.wrap26 {height:50px; text-align:right;}
+.wrap26:before {content:"";}
+.wrap26 .box {position:absolute; display:inline; margin-left:-50px;}
+
 </style>
   </head>
   <body>
-    <p>Hello, world!</p>
+<div class="wrap wrap26">
+  <div class="box">26</div>
+</div>
   </body>
 </html>
