@@ -6,13 +6,13 @@
 .wrap {outline:1px solid green;}
 .box {width:50px; height:50px; background:red;}
 
-.wrap34 {height:50px; display:flex; flex-flow:column wrap; align-content:flex-end;}
-.wrap34:before {content:"\00A0";}
+.wrap35 {display:table;}
+.wrap35:before {content:""; display:table-cell; width:100%;}
 
 </style>
   </head>
   <body>
-<div class="wrap wrap34">
+<div class="wrap wrap35">
   <div class="box"></div>
 </div>
   </body>
