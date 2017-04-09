@@ -2,8 +2,18 @@
 <html>
   <head>
     <title>HTML Document Template</title>
+<style>
+.wrap {outline:1px solid green;}
+.box {width:50px; height:50px; background:red;}
+
+.wrap34 {height:50px; display:flex; flex-flow:column wrap; align-content:flex-end;}
+.wrap34:before {content:"\00A0";}
+
+</style>
   </head>
   <body>
-    <p>Hello, world!</p>
+<div class="wrap wrap34">
+  <div class="box"></div>
+</div>
   </body>
 </html>
