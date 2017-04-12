@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flexbox</title>
+    <title>Justify</title>
 <style>
 .wrap {outline:1px solid green;}
 .box {width:50px; height:50px; background:red;}
 
-.wrap43 {display:flex;}
-.wrap43:before {content:""; width:100%;}
-  .wrap43 .box {flex-shrink:0;}
+.wrap41 {text-align:justify; text-align-last:justify;}
+.wrap41:before {content:"\00A0";}
+.wrap41 .box {display:inline-block;}
 
 </style>
   </head>
   <body>
-<div class="wrap wrap43">
-  <div class="box"></div>
+<div class="wrap wrap41">
+  <div class="box">41</div>
 </div>
   </body>
 </html>
