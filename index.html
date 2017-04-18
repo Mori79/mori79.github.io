@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HTML Document Template</title>
+    <title>Last</title>
+<style>
+.wrap {outline:1px solid green;}
+.box {width:50px; height:50px; background:red;}
+
+.wrap52 .box {visibility:hidden; width:inherit;}
+.wrap52 .box:after {visibility:visible; content:"52"; float:right; width:50px; height:inherit; background:inherit;}
+
+</style>
   </head>
   <body>
-    <p>Hello, world!</p>
+<div class="wrap wrap52">
+  <div class="box">52</div>
+</div>
   </body>
 </html>
