@@ -8,14 +8,11 @@
       margin: 0;
       height: 100vh;
       display: flex;
-    }
-
-    body.horizontal {
       flex-direction: column;
     }
 
     div {
-      flex: 1 1 0px;
+      flex: 1;
     }
 
     div#tan {
@@ -31,11 +28,6 @@
 <body>
   <div id="tan"></div>
   <div id="teal"></div>
-  <script>
-    setTimeout(function() {
-      document.body.className = 'horizontal';
-    }, 3000);
-  </script>
 </body>
 
 </html>
