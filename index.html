@@ -8,7 +8,16 @@
       margin: 0;
       height: 100vh;
       display: flex;
-      flex-direction: column;
+      animation: change 1s 3s forwards;
+    }
+
+    @keyframes change {
+      from {
+        flex-direction: row;
+      }
+      to {
+        flex-direction: column;
+      }
     }
 
     div {
