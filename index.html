@@ -9,19 +9,15 @@
       height: 100vh;
       display: flex;
     }
-
-    body:hover {
+    body.horizontal {
       flex-direction: column;
     }
-
     div {
       flex: 1;
     }
-
     div#tan {
       background: tan;
     }
-
     div#teal {
       background: teal;
     }
@@ -31,6 +27,11 @@
 <body>
   <div id="tan"></div>
   <div id="teal"></div>
+  <script>
+    setTimeout(function() {
+      document.body.className = 'horizontal';
+    }, 3000);
+  </script>
 </body>
 
 </html>
