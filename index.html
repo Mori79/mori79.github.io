@@ -1,8 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>HTML Document Template</title>
-  </head>
-  <body onload="window.parent.location = 'https://www.example.com/'">
-  </body>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("p").click(function(){
+        $(top.location).attr('href', 'https://example.com')
+    });
+});
+</script>
+</head>
+<body>
+
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+
+</body>
 </html>
