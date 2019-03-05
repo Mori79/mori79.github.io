@@ -1,68 +1,32 @@
-<!DOCTYPE HTML>
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-
-<title>Average Grade</title>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mori79</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+        html {
+            height: 100%;
+            background: linear-gradient(#FFF, #CCC);
+        }
+        body {
+            margin: 1em;
+        }
+        img {
+            float: left;
+        }
+        a {
+            font-family: Arial;
+            color: #333;
+        }
+    </style>
 </head>
-<body> 
 
-
- <form>
-  <div id="p">
-  Physics:
-  <label>grade 1 <input type="number"></label>
-  <label>grade 2 <input type="number"></label>
-  <label>grade 3 <input type="number"></label>
-  <output id="averageP"></output>
-  </div>
-  <div id="h">
-  History:
-  <label>grade 1 <input type="number"></label>
-  <label>grade 2 <input type="number"></label>
-  <label>grade 3 <input type="number"></label>
-  <output id="averageH"></output>
-  </div>
-  <button type="button" id="calcBtn">Calculate</button>
- </form>
-
-
-<script>
-document.getElementById('calcBtn').addEventListener('click', function() {
-         var c,
-         numP = document.getElementById( 'p' ).querySelectorAll( 'input' ), 
-         numH = document.getElementById( 'h' ).querySelectorAll( 'input' ), 
-         countP = numP.length,
-         countH = numH.length,
-         averageP = document.getElementById( 'averageP' ),
-         averageH = document.getElementById( 'averageH' );
-           for ( c = 0; c < numP.length; c ++ ){
-           if ( numP[ c ].value === '' )  { 
-            countP --;
-            }
-           if ( countP === 0 ){
-                averageP.value = 'No assessment made';
-             }
-           else {
-             averageP.value = ( Number( numP[ 0 ].value ) + Number( numP[ 1 ].value ) + Number( numP[ 2 ].value ) ) / countP;
-             }
-               }
-               for ( c = 0; c < numH.length; c ++ ){
-           if ( numH[ c ].value === '' )  { 
-            countH --;
-            }
-           if ( countH === 0 ){
-                averageH.value = 'No assessment made';
-             }
-           else {
-             averageH.value = ( Number( numH[ 0 ].value ) + Number( numH[ 1 ].value ) + Number( numH[ 2 ].value ) ) / countH;
-             }
-               }
-});
-</script>  
-
-
+<body>
+    <img src="logo.png" alt="Logo">
+    <a href="https://github.com/Mori79/mori79.github.io">My repository on GitHub</a>
 </body>
+
 </html>
