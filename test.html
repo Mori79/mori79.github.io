@@ -1,68 +1,116 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <title>Class Activity Calculator</title>
+<style>
+input {
+  width: 4em;
+}
+</style>
+  </head>
+  <body>
 
-
-<title>Average Grade</title>
-
-
-</head>
-<body> 
-
-
- <form>
-  <div id="p">
-  Physics:
-  <label>grade 1 <input type="number"></label>
-  <label>grade 2 <input type="number"></label>
-  <label>grade 3 <input type="number"></label>
-  <output id="averageP"></output>
-  </div>
-  <div id="h">
-  History:
-  <label>grade 1 <input type="number"></label>
-  <label>grade 2 <input type="number"></label>
-  <label>grade 3 <input type="number"></label>
-  <output id="averageH"></output>
-  </div>
-  <button type="button" id="calcBtn">Calculate</button>
- </form>
-
+<form id="form">
+  <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <input type="number" step="0.1">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
 
 <script>
-document.getElementById('calcBtn').addEventListener('click', function() {
-         var c,
-         numP = document.getElementById( 'p' ).querySelectorAll( 'input' ), 
-         numH = document.getElementById( 'h' ).querySelectorAll( 'input' ), 
-         countP = numP.length,
-         countH = numH.length,
-         averageP = document.getElementById( 'averageP' ),
-         averageH = document.getElementById( 'averageH' );
-           for ( c = 0; c < numP.length; c ++ ){
-           if ( numP[ c ].value === '' )  { 
-            countP --;
-            }
-           if ( countP === 0 ){
-                averageP.value = 'No assessment made';
-             }
-           else {
-             averageP.value = ( Number( numP[ 0 ].value ) + Number( numP[ 1 ].value ) + Number( numP[ 2 ].value ) ) / countP;
-             }
-               }
-               for ( c = 0; c < numH.length; c ++ ){
-           if ( numH[ c ].value === '' )  { 
-            countH --;
-            }
-           if ( countH === 0 ){
-                averageH.value = 'No assessment made';
-             }
-           else {
-             averageH.value = ( Number( numH[ 0 ].value ) + Number( numH[ 1 ].value ) + Number( numH[ 2 ].value ) ) / countH;
-             }
-               }
+var i;
+
+function detectChanges() {
+  var inputs = document.querySelectorAll('input');
+  for (i = 0; i < inputs.length; i++) {
+    if (inputs[i].value) {
+      return true;
+    }
+  }
+}
+
+function calculateAverage(grades) {
+  var total = 0;
+  var count = 0;
+  for (i = 0; i < grades.length; i++) {
+    if (grades[i].value) {
+      total += Number(grades[i].value);
+      count++;
+    }
+  }
+  return total / count;
+}
+
+function displayAverage(grades) {
+  var avg = calculateAverage(grades);
+  if (isNaN(avg)) {
+    return 'Please enter a grade.';
+  } else {
+    return 'Average: ' + avg.toFixed(1);
+  }
+}
+
+document.getElementById('calculator').addEventListener('click', function() {
+  var listeningGrades = document.querySelectorAll('#listening > input');
+  var listeningAverage = document.getElementById('listeningAverage');
+  listeningAverage.value = displayAverage(listeningGrades);
+
+  var readingGrades = document.querySelectorAll('#reading > input');
+  var readingAverage = document.getElementById('readingAverage');
+  readingAverage.value = displayAverage(readingGrades);
+
+  var writingGrades = document.querySelectorAll('#writing > input');
+  var writingAverage = document.getElementById('writingAverage');
+  writingAverage.value = displayAverage(writingGrades);
+
+  var classActivity = document.getElementById('classActivity');
+  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
+  // skill average * its weight; weights total = 8
+  if (isNaN(averagesTotal)) {
+    classActivity.value = '';
+  } else {
+    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
+  }
 });
-</script>  
 
+document.getElementById('resetter').addEventListener('click', function() {
+  if (detectChanges() && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+    document.getElementById('form').reset();
+  }
+});
 
-</body>
+window.addEventListener('beforeunload', function(event) {
+  if (detectChanges()) {
+    event.returnValue = 'Your changes may be lost.';
+  }
+});
+</script>
+
+  </body>
 </html>
