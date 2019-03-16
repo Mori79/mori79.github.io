@@ -14,7 +14,7 @@ body {
   padding: 0;
 }
 
-body > * {
+header, nav, footer {
   padding: 16px;
 }
 
@@ -62,10 +62,9 @@ nav a:focus,
 
 main {
   display: flex;
-  padding: 3em 0;
 }
 
-form {margin: 0 auto; font-family: Arial;}
+form {margin: 3em auto; font-family: Arial;}
 fieldset {margin: 1em 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
 legend, button {color: #333;}
 legend {padding: 0.5em 0.25em;}
@@ -76,7 +75,7 @@ output[id$="Average"] {display: block; font-size: 0.75em; height: 1em; margin: 0
 
 footer {
   background: #333;
-  color: #FFF; font-family: arial; font-size: 0.75em
+  font: 0.75em Arial; color: #FFF;
 }
 
 footer a {
@@ -91,7 +90,7 @@ address {
 
 <body>
   <header>
-    <a href="/"><img src="images/logo.png" alt="Logo"></a>
+    <a href="/"><img src="logo.png" alt="Logo"></a>
     <h1>Class Activity Calculator</h1>
   </header>
   <nav>
@@ -101,8 +100,8 @@ address {
     <a href="feedback.html">Feedback</a>
   </nav>
   <main>
-<form id="form">
-  <fieldset id="listening">
+   <form id="form">
+    <fieldset id="listening">
     <legend>Listening & Speaking</legend>
     <input type="number" step="any">
     <input type="number" step="any">
@@ -136,7 +135,6 @@ address {
   </main>
   <footer>
     Share on <a href="https://plus.google.com/share?url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Google+">Telegram</a> |
-    <a href="https://twitter.com/share?text=GAE%20Sample%20Site&amp;url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Twitter">Twitter</a> |
     <a href="https://www.facebook.com/dialog/share?app_id=168896036831388&amp;href=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Facebook">Facebook</a>
     <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
   </footer>
