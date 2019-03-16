@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Activity Calculator</title>
 <style>
-input {
-  width: 4em;
-}
+body {display: flex;}
+form {margin: 0 auto; font-family: Arial;}
+fieldset {margin: 1em 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
+legend, button {color: #333;}
+legend {padding: 0.5em 0.25em;}
+input {width: 4em;}
+output {color: #C00;}
+output[id$="Average"] {display: block; font-size: 0.75em; height: 1em; margin: 0.5em;}
+#resetter {float: right;}
 </style>
   </head>
   <body>
@@ -14,29 +19,29 @@ input {
 <form id="form">
   <fieldset id="listening">
     <legend>Listening & Speaking</legend>
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
     <output id="listeningAverage"></output>
   </fieldset>
   <fieldset id="reading">
     <legend>Reading</legend>
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
     <output id="readingAverage"></output>
   </fieldset>
   <fieldset id="writing">
     <legend>Writing</legend>
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
-    <input type="number" step="0.1">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
     <output id="writingAverage"></output>
   </fieldset>
   <button type="button" id="calculator">Calculate</button>
