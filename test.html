@@ -1,9 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>HTML Document Template</title>
-  </head>
-  <body>
-    <a href="https://telegram.me/share/url?url=https://classactivitycalculator.github.io/&text=Class%20Activity%20Calculator">Hello, world!</a>
-  </body>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate the class activity grades of the ILI students.">
+  <title>Class Activity Calculator</title>
+  <base href="https://classactivitycalculator.github.io/">
+  <link rel="icon" href="favicon.ico">
+  <style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body > * {
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  background: linear-gradient(#999, #333);
+}
+
+header img {
+  width: 64px;
+  height: 64px;
+  vertical-align: bottom;
+}
+
+header h1 {
+  font-size: 24px;
+  font-family: 'Times New Roman';
+  color: #FFF;
+  text-shadow: 0 3px #000;
+  letter-spacing: 1px;
+}
+
+nav {
+  text-align: center;
+  background: #333;
+}
+
+nav a {
+  font: bold 12px Verdana;
+  color: #FFF;
+  padding: 6px 9px;
+  text-decoration: none;
+  outline: 0;
+}
+
+nav a:not(:last-child) {
+  margin-right: 18px;
+}
+
+nav a:hover,
+nav a:focus,
+#current {
+  border-bottom: 2px solid;
+}
+
+main {
+  display: flex;
+  padding: 3em
+}
+
+form {margin: 0 auto; font-family: Arial;}
+fieldset {margin: 1em 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
+legend, button {color: #333;}
+legend {padding: 0.5em 0.25em;}
+input {width: 4em;}
+output {color: #C00;}
+output[id$="Average"] {display: block; font-size: 0.75em; height: 1em; margin: 0.5em;}
+#resetter {float: right;}
+
+footer {
+  background: #333;
+  color: #FFF; font-family: arial; font-size: 0.75em
+}
+
+footer a {
+  color: inherit;
+}
+
+address {
+  float: right;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/"><img src="images/logo.png" alt="Logo"></a>
+    <h1>Class Activity Calculator</h1>
+  </header>
+  <nav>
+    <a href="index.html" id="current">Home</a>
+    <a href="downloads.html">Downloads</a>
+    <a href="faq.html">FAQ</a>
+    <a href="feedback.html">Feedback</a>
+  </nav>
+  <main>
+<form id="form">
+  <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
+  </main>
+  <footer>
+    Share on <a href="https://plus.google.com/share?url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Google+">Telegram</a> |
+    <a href="https://twitter.com/share?text=GAE%20Sample%20Site&amp;url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Twitter">Twitter</a> |
+    <a href="https://www.facebook.com/dialog/share?app_id=168896036831388&amp;href=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Facebook">Facebook</a>
+    <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
+  </footer>
+</body>
+
 </html>
