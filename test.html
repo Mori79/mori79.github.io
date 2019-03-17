@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
 }
-header, nav, footer {
+body > * {
   padding: 16px;
 }
 header {
@@ -39,23 +39,20 @@ nav {
 nav a {
   font: bold 12px Verdana;
   color: #FFF;
-  padding: 6px 9px;
+  padding: 6px;
   text-decoration: none;
   outline: 0;
 }
 
-nav a:not(:last-child) {
-  margin-right: 18px;
-}
 nav a:hover,
 nav a:focus,
 #current {
   border-bottom: 2px solid;
 }
 main {
-  display: flex;
+  font-family: Arial;
 }
-form {margin: 1em auto 2em; font-family: Arial;}
+form {display: table; margin: 0 auto 1em;}
 fieldset {margin: 1em 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
 legend, button {color: #333;}
 legend {padding: 0.5em 0.25em;}
@@ -82,11 +79,46 @@ address {
     <h1>Class Activity Calculator</h1>
   </header>
   <nav>
-    <a href="index.html" id="current">Adults</a>
+    <a href="index.html" id="current">Adult: Elementary</a>
+    <a href="faq.html">Adults: Other</a>
     <a href="faq.html">Young Adults</a>
     <a href="feedback.html">Kids</a>
   </nav>
   <main>
+<h1>Elementary</h1>
+   <form id="form">
+    <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
+<h1>Other</h1>
    <form id="form">
     <fieldset id="listening">
     <legend>Listening & Speaking</legend>
