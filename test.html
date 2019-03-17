@@ -39,11 +39,14 @@ nav {
 nav a {
   font: bold 12px Verdana;
   color: #FFF;
-  padding: 6px 3px;
+  padding: 6px 9px;
   text-decoration: none;
   outline: 0;
 }
 
+nav a:not(:last-child) {
+  margin-right: 18px;
+}
 nav a:hover,
 nav a:focus,
 #current {
@@ -79,8 +82,7 @@ address {
     <h1>Class Activity Calculator</h1>
   </header>
   <nav>
-    <a href="index.html" id="current">Adults: Elementary</a>
-    <a href="downloads.html">Adults: Other</a>
+    <a href="index.html" id="current">Adults</a>
     <a href="faq.html">Young Adults</a>
     <a href="feedback.html">Kids</a>
   </nav>
