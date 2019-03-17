@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Calculate the class activity grades of the ILI students.">
-  <title>Class Activity Calculator</title>
-  <base href="https://classactivitycalculator.github.io/">
+  <meta name="description" content="A sample website hosted on Google App Engine">
+  <title>GAE Sample Site</title>
+  <base href="http://gaesamplesite.appspot.com/">
   <link rel="icon" href="favicon.ico">
   <style>
 html,
@@ -13,18 +14,22 @@ body {
   margin: 0;
   padding: 0;
 }
+
 body > * {
   padding: 16px;
 }
+
 header {
   text-align: center;
   background: linear-gradient(#999, #333);
 }
+
 header img {
   width: 64px;
   height: 64px;
   vertical-align: bottom;
 }
+
 header h1 {
   font-size: 24px;
   font-family: 'Times New Roman';
@@ -32,10 +37,12 @@ header h1 {
   text-shadow: 0 3px #000;
   letter-spacing: 1px;
 }
+
 nav {
   text-align: center;
   background: #333;
 }
+
 nav a {
   font: bold 12px Verdana;
   color: #FFF;
@@ -49,80 +56,72 @@ nav a:focus,
 #current {
   border-bottom: 2px solid;
 }
+
 main {
-  display: flex;
+  font: 13px Arial;
+  color: #333;
 }
-form {margin: 1em auto 2em;}
-form * {font-family: Arial;}
-fieldset {margin: 1em 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
-legend, button {color: #333;}
-legend {padding: 0.5em 0.25em;}
-input {width: 4em;}
-output {color: #C00;}
-output[id$="Average"] {display: block; font-size: 0.75em; height: 1em; margin: 0.5em;}
-#resetter {float: right;}
-footer {
-  background: #333;
-  font: 0.75em Arial; color: #FFF;
-}
-footer a {
+
+main a {
   color: inherit;
 }
-address {
-  float: right;
+
+footer {
+  display: flex;
+  align-items: center;
+  background: #333;
+}
+
+[title$="Twitter"] {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+footer img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+span {
+  margin-left: auto;
+  font: 16px Arial;
+  color: #FFF;
+}
+
+span a {
+  color: inherit;
+  text-decoration: none;
 }
   </style>
 </head>
 
 <body>
   <header>
-    <a href="/"><img src="logo.png" alt="Logo"></a>
-    <h1>Class Activity Calculator</h1>
+    <a href="/"><img src="images/logo.png" alt="Logo"></a>
+    <h1>GAE Sample Site</h1>
   </header>
   <nav>
-    <a href="index.html" id="current">Adult</a>
-    <a href="faq.html">Adults</a>
+    <a href="index.html" id="current">Adults (elementary)</a>
+    <a href="downloads.html">Adults (other)</a>
     <a href="faq.html">Young Adults</a>
     <a href="feedback.html">Kids</a>
   </nav>
   <main>
-   <form id="form">
-    <fieldset id="listening">
-    <legend>Listening & Speaking</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <output id="listeningAverage"></output>
-  </fieldset>
-  <fieldset id="reading">
-    <legend>Reading</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <output id="readingAverage"></output>
-  </fieldset>
-  <fieldset id="writing">
-    <legend>Writing</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <output id="writingAverage"></output>
-  </fieldset>
-  <button type="button" id="calculator">Calculate</button>
-  <output id="classActivity"></output>
-  <button type="button" id="resetter">Reset</button>
-</form>
+    <h1>Home</h1>
+    <p>Hello everyone and welcome to GAE Sample Site — a sample website hosted on Google App Engine. For more information, see the following tutorial: <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_do_you_host_your_website_on_Google_App_Engine" title="How do you host your website on Google App Engine? - Learn web development | MDN">How do you host your website on Google App Engine?</a>.</p>
   </main>
   <footer>
-    Share on <a href="https://plus.google.com/share?url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Google+">Telegram</a> |
-    <a href="https://www.facebook.com/dialog/share?app_id=168896036831388&amp;href=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Facebook">Facebook</a>
-    <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
+    <a href="https://plus.google.com/share?url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Google+">
+      <img src="images/google+.png" alt="Google+">
+    </a>
+    <a href="https://twitter.com/share?text=GAE%20Sample%20Site&amp;url=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Twitter">
+      <img src="images/twitter.png" alt="Twitter">
+    </a>
+    <a href="https://www.facebook.com/dialog/share?app_id=168896036831388&amp;href=http%3A%2F%2Fgaesamplesite.appspot.com%2F" target="_blank" title="Share on Facebook">
+      <img src="images/facebook.png" alt="Facebook">
+    </a>
+    <span><a href="index.html">Home</a> | <a href="#top">Top ▲</a></span>
   </footer>
 </body>
 
