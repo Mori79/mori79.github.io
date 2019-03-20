@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate the class activity grades of the ILI students.">
+  <title>Class Activity Calculator</title>
+  <base href="https://classactivitycalculator.github.io/">
+  <link rel="icon" href="favicon.ico">
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header, nav, footer {
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  background: linear-gradient(#999, #333);
+}
+
+header img {
+  width: 64px;
+  height: 64px;
+  vertical-align: bottom;
+}
+
+header h1 {
+  font-size: 24px;
+  font-family: 'Times New Roman';
+  color: #FFF;
+  text-shadow: 0 3px #000;
+  letter-spacing: 1px;
+}
+
+nav {
+  text-align: center;
+  background: #333;
+  color: #FFF;
+}
+
+nav a {
+  font: bold 12px Verdana;
+  color: inherit;
+  padding: 6px 0;
+  text-decoration: none;
+  outline: 0;
+}
+
+nav a:hover,
+nav a:focus,
+#current {
+  border-bottom: 2px solid;
+}
+
+main {
+  display: flex;
+}
+
+form {margin: 16px auto 32px;}
+fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
+legend, input, output, button {font-family: Arial;}
+legend, button {color: #333;}
+legend {padding: 8px 4px;}
+input {width: 40pt;}
+output {color: #C00;}
+output[id$="Average"] {display: block; font-size: 12px; height: 1px; margin: 6px;}
+#resetter {float: right;}
+
+footer {
+  background: #333;
+  font: 12px Arial;
+  color: #FFF;
+}
+
+footer a {
+  color: inherit;
+}
+
+address {
+  float: right;
+}
+</style>
+</head>
+
+<body>
+  <header>
+    <a href="/"><img src="logo.png" alt="Logo"></a>
+    <h1>Class Activity Calculator</h1>
+  </header>
+  <nav>
+    <a href="index.html" id="current">Adults: Old</a> |
+    <a href="downloads.html">Adults: New</a> |
+    <a href="faq.html">Young Adults</a> |
+    <a href="feedback.html">Kids</a>
+  </nav>
+  <main>
+<form id="form">
+  <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <input type="number" step="any">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
+  </main>
+  <footer>
+    Share on <a href="https://t.me/share/url?url=https%3A%2F%2Fclassactivitycalculator.github.io%2F&text=Class%20Activity%20Calculator%3A%20Calculate%20the%20class%20activity%20grades%20of%20the%20ILI%20students." title="Telegram: Share Web Page">Telegram</a> |
+    <a href="https://www.facebook.com/dialog/share?app_id=2194746457255787&href=https%3A%2F%2Fclassactivitycalculator.github.io%2F" title="Post to Facebook">Facebook</a>
+    <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
+  </footer>
+<script>
+var i;
+
+function detectChanges() {
+  var inputs = document.querySelectorAll('input');
+  for (i = 0; i < inputs.length; i++) {
+    if (inputs[i].value) {
+      return true;
+    }
+  }
+}
+
+function calculateAverage(grades) {
+  var total = 0;
+  var count = 0;
+  for (i = 0; i < grades.length; i++) {
+    if (grades[i].value) {
+      total += Number(grades[i].value);
+      count++;
+    }
+  }
+  return total / count;
+}
+
+function displayAverage(grades) {
+  var avg = calculateAverage(grades);
+  if (isNaN(avg)) {
+    return 'Please enter a grade.';
+  } else {
+    return 'Average: ' + avg.toFixed(1);
+  }
+}
+
+document.getElementById('calculator').addEventListener('click', function() {
+  var listeningGrades = document.querySelectorAll('#listening > input');
+  var listeningAverage = document.getElementById('listeningAverage');
+  listeningAverage.value = displayAverage(listeningGrades);
+
+  var readingGrades = document.querySelectorAll('#reading > input');
+  var readingAverage = document.getElementById('readingAverage');
+  readingAverage.value = displayAverage(readingGrades);
+
+  var writingGrades = document.querySelectorAll('#writing > input');
+  var writingAverage = document.getElementById('writingAverage');
+  writingAverage.value = displayAverage(writingGrades);
+
+  var classActivity = document.getElementById('classActivity');
+  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
+  // skill average * its weight; weights total = 8
+  if (isNaN(averagesTotal)) {
+    classActivity.value = '';
+  } else {
+    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
+  }
+});
+
+document.getElementById('resetter').addEventListener('click', function() {
+  if (detectChanges() && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+    document.getElementById('form').reset();
+  }
+});
+
+window.addEventListener('beforeunload', function(event) {
+  if (detectChanges()) {
+    event.returnValue = 'Your changes may be lost.';
+  }
+});
+</script>
+</body>
+
+</html>
