@@ -15,19 +15,20 @@ body {
   padding: 0;
 }
 
-header, nav, footer {
+header, footer {
   padding: 16px;
 }
 
 header {
-  text-align: center;
-  background: linear-gradient(#999, #333);
+  display: flex;
+  align-items: center;
+  background: #333;
 }
 
 header img {
-  width: 64px;
-  height: 64px;
-  vertical-align: bottom;
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
 }
 
 header h1 {
@@ -36,10 +37,10 @@ header h1 {
   color: #FFF;
   text-shadow: 0 3px #000;
   letter-spacing: 1px;
+  margin-right: auto
 }
 
 nav {
-  text-align: center;
   background: #333;
   color: #FFF;
 }
@@ -47,9 +48,13 @@ nav {
 nav a {
   font: bold 12px Verdana;
   color: inherit;
-  padding: 6px 0;
+  padding: 6px 3px;
   text-decoration: none;
   outline: 0;
+}
+
+nav a:not(:last-child) {
+  margin-right: 18px;
 }
 
 nav a:hover,
@@ -93,13 +98,13 @@ address {
   <header>
     <a href="/"><img src="logo.png" alt="Logo"></a>
     <h1>Class Activity Calculator</h1>
+    <nav>
+      <a href="index.html" id="current">Adults: Old</a>
+      <a href="downloads.html">Adults: New</a>
+      <a href="faq.html">Young Adults</a>
+      <a href="feedback.html">Kids</a>
+    </nav>
   </header>
-  <nav>
-    <a href="index.html" id="current">Adults: Old</a> |
-    <a href="downloads.html">Adults: New</a> |
-    <a href="faq.html">Young Adults</a> |
-    <a href="feedback.html">Kids</a>
-  </nav>
   <main>
 <form id="form">
   <fieldset id="listening">
