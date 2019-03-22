@@ -14,50 +14,54 @@ body {
   margin: 0;
   padding: 0;
 }
+
 header, nav, footer {
   padding: 16px;
 }
+
 header {
-  display: flex;
-  align-items: center;
-  background: #333;
+  text-align: center;
+  background: linear-gradient(#999, #333);
 }
+
 header img {
-  width: 36px;
-  height: 36px;
-  margin-right: 16px;
+  width: 48px;
+  height: 48px;
+  vertical-align: bottom;
 }
+
 header h1 {
   font-size: 20px;
   font-family: 'Times New Roman';
   color: #FFF;
   text-shadow: 0 3px #000;
   letter-spacing: 1px;
-  margin-right: auto
 }
+
 nav {
   text-align: center;
   background: #333;
   color: #FFF;
 }
+
 nav a {
   font: bold 12px Verdana;
   color: inherit;
-  padding: 6px 3px;
+  padding: 6px 0;
   text-decoration: none;
   outline: 0;
 }
-nav a:not(:last-child) {
-  margin-right: 18px;
-}
+
 nav a:hover,
 nav a:focus,
 #current {
   border-bottom: 2px solid;
 }
+
 main {
   display: flex;
 }
+
 form {margin: 16px auto 32px;}
 fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
 legend, input, output, button {font-family: Arial;}
@@ -65,17 +69,19 @@ legend, button {color: #333;}
 legend {padding: 8px 4px;}
 input {width: 40pt;}
 output {color: #C00;}
-output[id$="Average"] {display: block; font-size: 12px; margin: 6px;}
-output[id$="Average"]::after {content: "\00A0";}
+output[id$="Average"] {display: block; font-size: 12px; height: 12px; margin: 6px;}
 #resetter {float: right;}
+
 footer {
   background: #333;
   font: 12px Arial;
   color: #FFF;
 }
+
 footer a {
   color: inherit;
 }
+
 address {
   float: right;
 }
@@ -87,12 +93,12 @@ address {
     <a href="/"><img src="logo.png" alt="Logo"></a>
     <h1>Class Activity Calculator</h1>
   </header>
-    <nav>
-      <a href="index.html" id="current">Adults: Old</a>
-      <a href="downloads.html">Adults: New</a>
-      <a href="faq.html">Young Adults</a>
-      <a href="feedback.html">Kids</a>
-    </nav>
+  <nav>
+    <a href="index.html" id="current">Adults: Old</a> |
+    <a href="downloads.html">Adults: New</a> |
+    <a href="faq.html">Young Adults</a> |
+    <a href="feedback.html">Kids</a>
+  </nav>
   <main>
 <form id="form">
   <fieldset id="listening">
@@ -132,65 +138,6 @@ address {
     <a href="https://www.facebook.com/dialog/share?app_id=2194746457255787&href=https%3A%2F%2Fclassactivitycalculator.github.io%2F" title="Post to Facebook">Facebook</a>
     <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
   </footer>
-<script>
-var i;
-function detectChanges() {
-  var inputs = document.querySelectorAll('input');
-  for (i = 0; i < inputs.length; i++) {
-    if (inputs[i].value) {
-      return true;
-    }
-  }
-}
-function calculateAverage(grades) {
-  var total = 0;
-  var count = 0;
-  for (i = 0; i < grades.length; i++) {
-    if (grades[i].value) {
-      total += Number(grades[i].value);
-      count++;
-    }
-  }
-  return total / count;
-}
-function displayAverage(grades) {
-  var avg = calculateAverage(grades);
-  if (isNaN(avg)) {
-    return 'Please enter a grade.';
-  } else {
-    return 'Average: ' + avg.toFixed(1);
-  }
-}
-document.getElementById('calculator').addEventListener('click', function() {
-  var listeningGrades = document.querySelectorAll('#listening > input');
-  var listeningAverage = document.getElementById('listeningAverage');
-  listeningAverage.value = displayAverage(listeningGrades);
-  var readingGrades = document.querySelectorAll('#reading > input');
-  var readingAverage = document.getElementById('readingAverage');
-  readingAverage.value = displayAverage(readingGrades);
-  var writingGrades = document.querySelectorAll('#writing > input');
-  var writingAverage = document.getElementById('writingAverage');
-  writingAverage.value = displayAverage(writingGrades);
-  var classActivity = document.getElementById('classActivity');
-  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
-  // skill average * its weight; weights total = 8
-  if (isNaN(averagesTotal)) {
-    classActivity.value = '';
-  } else {
-    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
-  }
-});
-document.getElementById('resetter').addEventListener('click', function() {
-  if (detectChanges() && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
-    document.getElementById('form').reset();
-  }
-});
-window.addEventListener('beforeunload', function(event) {
-  if (detectChanges()) {
-    event.returnValue = 'Your changes may be lost.';
-  }
-});
-</script>
 </body>
 
 </html>
