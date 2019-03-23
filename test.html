@@ -20,28 +20,24 @@ header, nav, footer {
 }
 
 header {
-  text-align: center;
+  display: flex;
+  align-items: center;
   background: linear-gradient(#999, #333);
+  color: #FFF;
 }
 
 header img {
-  width: 48px;
-  height: 48px;
-  vertical-align: bottom;
+  width: 32px;
+  height: 32px;
 }
 
 header h1 {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Times New Roman';
   color: #FFF;
-  text-shadow: 0 3px #000;
+  text-shadow: 0 2px #000;
   letter-spacing: 1px;
-}
-
-nav {
-  text-align: center;
-  background: #333;
-  color: #FFF;
+  margin-left: 8px;
 }
 
 nav a {
@@ -92,13 +88,13 @@ address {
   <header>
     <a href="/"><img src="logo.png" alt="Logo"></a>
     <h1>Class Activity Calculator</h1>
-  </header>
   <nav>
     <a href="index.html" id="current">Adults: Old</a> |
     <a href="downloads.html">Adults: New</a> |
     <a href="faq.html">Young Adults</a> |
     <a href="feedback.html">Kids</a>
   </nav>
+  </header>
   <main>
 <form id="form">
   <fieldset id="listening">
