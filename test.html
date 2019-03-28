@@ -20,23 +20,22 @@ header, nav, footer {
 }
 
 header {
-  display: flex;
-  align-items: center;
+  text-align: center;
   background: linear-gradient(#999, #333);
 }
 
 header img {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
+  vertical-align: bottom;
 }
 
 header h1 {
-  font-size: 18px;
+  font-size: 1.25rem;
   font-family: 'Times New Roman';
   color: #FFF;
-  text-shadow: 0 2px #000;
+  text-shadow: 0 3px #000;
   letter-spacing: 1px;
-  margin-left: 8px;
 }
 
 nav {
@@ -46,7 +45,7 @@ nav {
 }
 
 nav a {
-  font: bold 12px Verdana;
+  font: bold 0.75rem Verdana;
   color: inherit;
   padding: 6px 0;
   text-decoration: none;
@@ -68,14 +67,16 @@ fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#F
 legend, input, output, button {font-family: Arial;}
 legend, button {color: #333;}
 legend {padding: 8px 4px;}
-input {width: 40pt;}
+input {width: 4em;}
 output {color: #C00;}
-output[id$="Average"] {display: block; font-size: 12px; height: 12px; margin: 6px;}
+output[id$="Average"] {display: block; font-size: 0.75rem; margin: 6px;}
+output[id$="Average"]::after {content: "\00A0";}  /* a placeholder */
+#classActivity {font-size: 0.833rem;}
 #resetter {float: right;}
 
 footer {
   background: #333;
-  font: 12px Arial;
+  font: 0.75rem Arial;
   color: #FFF;
 }
 
@@ -104,29 +105,29 @@ address {
 <form id="form">
   <fieldset id="listening">
     <legend>Listening & Speaking</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
     <output id="listeningAverage"></output>
   </fieldset>
   <fieldset id="reading">
     <legend>Reading</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
     <output id="readingAverage"></output>
   </fieldset>
   <fieldset id="writing">
     <legend>Writing</legend>
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
-    <input type="number" step="any">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
     <output id="writingAverage"></output>
   </fieldset>
   <button type="button" id="calculator">Calculate</button>
@@ -137,8 +138,76 @@ address {
   <footer>
     Share on <a href="https://t.me/share/url?url=https%3A%2F%2Fclassactivitycalculator.github.io%2F&text=Class%20Activity%20Calculator%3A%20Calculate%20the%20class%20activity%20grades%20of%20the%20ILI%20students." title="Telegram: Share Web Page">Telegram</a> |
     <a href="https://www.facebook.com/dialog/share?app_id=2194746457255787&href=https%3A%2F%2Fclassactivitycalculator.github.io%2F" title="Post to Facebook">Facebook</a>
-    <address>Created by <a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Mori</a></address>
+    <address><a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Give feedback</a></address>
   </footer>
+<script>
+var i;
+
+function detectChanges() {
+  var inputs = document.querySelectorAll('input');
+  for (i = 0; i < inputs.length; i++) {
+    if (inputs[i].value) {
+      return true;
+    }
+  }
+}
+
+function calculateAverage(grades) {
+  var total = 0;
+  var count = 0;
+  for (i = 0; i < grades.length; i++) {
+    if (grades[i].value) {
+      total += Number(grades[i].value);
+      count++;
+    }
+  }
+  return total / count;
+}
+
+function displayAverage(grades) {
+  var avg = calculateAverage(grades);
+  if (isNaN(avg)) {
+    return 'Please enter a grade.';
+  } else {
+    return 'Average: ' + avg.toFixed(1);
+  }
+}
+
+document.getElementById('calculator').addEventListener('click', function() {
+  var listeningGrades = document.querySelectorAll('#listening > input');
+  var listeningAverage = document.getElementById('listeningAverage');
+  listeningAverage.value = displayAverage(listeningGrades);
+
+  var readingGrades = document.querySelectorAll('#reading > input');
+  var readingAverage = document.getElementById('readingAverage');
+  readingAverage.value = displayAverage(readingGrades);
+
+  var writingGrades = document.querySelectorAll('#writing > input');
+  var writingAverage = document.getElementById('writingAverage');
+  writingAverage.value = displayAverage(writingGrades);
+
+  var classActivity = document.getElementById('classActivity');
+  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
+  // skill average * its weight; weights total = 8
+  if (isNaN(averagesTotal)) {
+    classActivity.value = '';
+  } else {
+    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
+  }
+});
+
+document.getElementById('resetter').addEventListener('click', function() {
+  if (detectChanges() && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+    document.getElementById('form').reset();
+  }
+});
+
+window.addEventListener('beforeunload', function(event) {
+  if (detectChanges()) {
+    event.returnValue = 'Your changes may be lost.';
+  }
+});
+</script>
 </body>
 
 </html>
