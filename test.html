@@ -55,7 +55,7 @@
 
   <script>
     var form = document.querySelector('form');
-    var max = form.querySelectorAll('input')[0].max;
+    var max = Number(form.querySelectorAll('input')[0].max);
 
     function validateAndAverageGrades(course) {
       var total = 0;
@@ -63,15 +63,12 @@
       var inputs = course.querySelectorAll('input');
       for (var input of inputs) {
         var grade = input.value;
-        if (grade && input.validity.valid) {
+        if (grade && 0 <= grade && grade <= max) {
           total += Number(grade);
           count++;
         } else if (grade) {
           return 'You may only enter 0 to ' + max + '.';
         }
-      }
-      if (!count) {
-        return 'Please enter a grade.';
       }
       return total / count;
     }
@@ -81,8 +78,10 @@
       for (var fieldset of fieldsets) {
         var output = fieldset.querySelector('output');
         var returnValue = validateAndAverageGrades(fieldset);
-        if (isNaN(returnValue)) {
+        if (typeof returnValue == 'string') {
           output.value = returnValue;
+        } else if (isNaN(returnValue)) {
+          output.value = 'Please enter a grade.';
         } else {
           output.value = 'Average: ' + returnValue.toFixed(1);
         }
