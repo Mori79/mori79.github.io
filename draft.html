@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Class Activity Calculator</title>
+<style>
+body {display: flex;}
+form {margin: 16px auto 32px;}
+fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
+legend, input, output, button {font-family: Arial;}
+legend, button {color: #333;}
+legend {padding: 8px 4px;}
+input {width: 40pt;}
+input:invalid {outline: 1px solid red;}
+output {color: #C00;}
+output[id$="Average"] {display: block; font-size: 0.75rem; margin: 6px;}
+output[id$="Average"]::after {content: "\00A0";}  /* a placeholder */
+#classActivity {font-size: 0.833rem;}
+#resetter {float: right;}
+</style>
+  </head>
+  <body>
+
+<form id="form">
+  <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
+
+<script>
+
+var form = document.getElementById('form');
+
+function calculateAverage(grades) {
+  var total = 0;
+  var count = 0;
+  for (var i = 0; i < grades.length; i++) {
+    if (grades[i].value) {
+      total += Number(grades[i].value);
+      count++;
+    }
+  }
+  return total / count;
+}
+
+function displayAverage(grades) {
+  var avg = calculateAverage(grades);
+  if (isNaN(avg)) {
+    return 'Please enter a grade.';
+  } else {
+    return 'Average: ' + avg.toFixed(1);
+  }
+}
+
+document.getElementById('calculator').addEventListener('click', function() {
+  var listeningGrades = document.querySelectorAll('#listening > input');
+  var listeningAverage = document.getElementById('listeningAverage');
+  listeningAverage.value = displayAverage(listeningGrades);
+
+  var readingGrades = document.querySelectorAll('#reading > input');
+  var readingAverage = document.getElementById('readingAverage');
+  readingAverage.value = displayAverage(readingGrades);
+
+  var writingGrades = document.querySelectorAll('#writing > input');
+  var writingAverage = document.getElementById('writingAverage');
+  writingAverage.value = displayAverage(writingGrades);
+
+  var classActivity = document.getElementById('classActivity');
+  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
+  // skill average * its weight; weights total = 8
+  if (isNaN(averagesTotal)) {
+    classActivity.value = '';
+  } else {
+    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
+  }
+});
+
+    form.addEventListener('input', function() {
+      this.className = 'changed';
+    });
+
+document.getElementById('resetter').addEventListener('click', function() {
+  if (form.className == 'changed' && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+    form.className = '';
+    form.reset();
+  }
+});
+
+window.addEventListener('beforeunload', function(event) {
+  if (form.className == 'changed') {
+    event.returnValue = 'Your changes may be lost.';
+  }
+});
+</script>
+
+  </body>
+</html>
