@@ -1,97 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Class Activity Calculator</title>
+<style>
+body {display: flex;}
+form {margin: 16px auto 32px;}
+fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
+legend, input, output, button {font-family: Arial;}
+legend, button {color: #333;}
+legend {padding: 8px 4px;}
+input {width: 40pt;}
+input:invalid {outline: 1px solid red;}
+output {color: #C00;}
+output[id$="Average"] {display: block; font-size: 0.75rem; margin: 6px;}
+output[id$="Average"]::after {content: "\00A0";}  /* a placeholder */
+#classActivity {font-size: 0.833rem;}
+#resetter {float: right;}
+</style>
+  </head>
+  <body>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Average Grade</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
+<form id="form">
+  <fieldset id="listening">
+    <legend>Listening & Speaking</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="listeningAverage"></output>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="readingAverage"></output>
+  </fieldset>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <input type="number" step="any" min="0" max="100">
+    <output id="writingAverage"></output>
+  </fieldset>
+  <button type="button" id="calculator">Calculate</button>
+  <output id="classActivity"></output>
+  <button type="button" id="resetter">Reset</button>
+</form>
+
+<script>
+
+var form = document.getElementById('form');
+
+function calculateAverage(grades) {
+  var total = 0;
+  var count = 0;
+  for (var i = 0; i < grades.length; i++) {
+    if (grades[i].value) {
+      total += Number(grades[i].value);
+      count++;
     }
+  }
+  return total / count;
+}
 
-    fieldset {
-      margin: 1em 0;
-    }
+function displayAverage(grades) {
+  var avg = calculateAverage(grades);
+  if (isNaN(avg)) {
+    return 'Please enter a grade.';
+  } else {
+    return 'Average: ' + avg.toFixed(1);
+  }
+}
 
-    input {
-      width: 4em;
-    }
+document.getElementById('calculator').addEventListener('click', function() {
+  var listeningGrades = document.querySelectorAll('#listening > input');
+  var listeningAverage = document.getElementById('listeningAverage');
+  listeningAverage.value = displayAverage(listeningGrades);
 
-    input:out-of-range {
-      outline: 1px solid red;
-    }
+  var readingGrades = document.querySelectorAll('#reading > input');
+  var readingAverage = document.getElementById('readingAverage');
+  readingAverage.value = displayAverage(readingGrades);
 
-    output {
-      display: block;
-      height: 1em;
-      margin: 0.25em;
-    }
-  </style>
-</head>
+  var writingGrades = document.querySelectorAll('#writing > input');
+  var writingAverage = document.getElementById('writingAverage');
+  writingAverage.value = displayAverage(writingGrades);
 
-<body>
-  <form>
-    <fieldset>
-      <legend>Physics</legend>
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <output></output>
-    </fieldset>
-    <fieldset>
-      <legend>History</legend>
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <output></output>
-    </fieldset>
-    <button type="button">Calculate</button>
-  </form>
+  var classActivity = document.getElementById('classActivity');
+  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
+  // skill average * its weight; weights total = 8
+  if (isNaN(averagesTotal)) {
+    classActivity.value = '';
+  } else {
+    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
+  }
+});
 
-  <script>
-    var form = document.querySelector('form');
-    var max = Number(form.querySelectorAll('input')[0].max);
-
-    function validateAndAverageGrades(course) {
-      var total = 0;
-      var count = 0;
-      var inputs = course.querySelectorAll('input');
-      for (var input of inputs) {
-        var grade = input.value;
-        if (grade && 0 <= grade && grade <= max) {
-          total += Number(grade);
-          count++;
-        } else if (grade) {
-          return 'You may only enter 0 to ' + max + '.';
-        }
-      }
-      return total / count;
-    }
-
-    function displayErrorMessagesAndAverages() {
-      var fieldsets = form.querySelectorAll('fieldset');
-      for (var fieldset of fieldsets) {
-        var output = fieldset.querySelector('output');
-        var returnValue = validateAndAverageGrades(fieldset);
-        if (typeof returnValue == 'string') {
-          output.value = returnValue;
-        } else if (isNaN(returnValue)) {
-          output.value = 'Please enter a grade.';
-        } else {
-          output.value = 'Average: ' + returnValue.toFixed(1);
-        }
-      }
-    }
-
-    form.querySelector('button').addEventListener('click', function() {
-      displayErrorMessagesAndAverages();
+    form.addEventListener('change', function() {
+      this.className = 'changed';
     });
-  </script>
-</body>
 
+document.getElementById('resetter').addEventListener('click', function() {
+  if (form.className == 'changed' && confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+    form.className = '';
+    form.reset();
+  }
+});
+
+window.addEventListener('beforeunload', function(event) {
+  if (form.className == 'changed') {
+    event.returnValue = 'Your changes may be lost.';
+  }
+});
+</script>
+
+  </body>
 </html>
