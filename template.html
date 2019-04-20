@@ -70,10 +70,10 @@ legend {padding: 8px 4px;}
 input {width: 40pt;}
 input:invalid {outline: 1px solid red;}
 output {color: #C00;}
-output[id$="Average"] {display: block; font-size: 0.75rem; margin: 6px;}
-output[id$="Average"]::after {content: "\00A0";}  /* a placeholder */
-#classActivity {font-size: 0.833rem;}
-#resetter {float: right;}
+fieldset output {display: block; font-size: 0.75rem; margin: 6px;}
+fieldset output::after {content: "\00A0";}  /* a placeholder */
+form > output {font-size: 0.833rem;}
+[type="reset"] {float: right;}
 
 footer {
   background: #333;
@@ -103,100 +103,100 @@ address {
     <a href="feedback.html">Kids</a>
   </nav>
   <main>
-<form id="form">
-  <fieldset id="listening">
-    <legend>Listening & Speaking</legend>
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <output id="listeningAverage"></output>
-  </fieldset>
-  <fieldset id="reading">
-    <legend>Reading</legend>
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <output id="readingAverage"></output>
-  </fieldset>
-  <fieldset id="writing">
-    <legend>Writing</legend>
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <input type="number" step="any" min="0" max="100">
-    <output id="writingAverage"></output>
-  </fieldset>
-  <button type="button" id="calculator">Calculate</button>
-  <output id="classActivity"></output>
-  <button type="reset" id="resetter">Reset</button>
-</form>
+  <form autocomplete="off">
+    <fieldset data-weight="4">
+      <legend>Listening & Speaking</legend>
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <output></output>
+    </fieldset>
+    <fieldset data-weight="3">
+      <legend>Reading</legend>
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <output></output>
+    </fieldset>
+    <fieldset data-weight="1">
+      <legend>Writing</legend>
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <input type="number" step="any" min="0" max="100">
+      <output></output>
+    </fieldset>
+    <button type="button">Calculate</button>
+    <output></output>
+    <button type="reset">Reset</button>
+  </form>
   </main>
   <footer>
     Share on <a href="https://t.me/share/url?url=https%3A%2F%2Fclassactivitycalculator.github.io%2F&text=Class%20Activity%20Calculator%3A%20Calculate%20the%20class%20activity%20grades%20of%20the%20ILI%20students." title="Telegram: Share Web Page">Telegram</a> |
     <a href="https://www.facebook.com/dialog/share?app_id=2194746457255787&href=https%3A%2F%2Fclassactivitycalculator.github.io%2F" title="Post to Facebook">Facebook</a>
     <address><a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Give feedback</a></address>
   </footer>
-<script>
+  <script>
+    var form = document.querySelector('form');
+
+    function averageInputValues(fieldset) {
+      var totalValue = 0;
+      var totalNumber = 0;
+      var inputs = fieldset.querySelectorAll('input');
+      for (var input of inputs) {
+        if (!input.validity.valid) {
+          return;
+        }
+          totalValue += Number(input.value);
+          totalNumber += Boolean(input.value);
+      }
+      return totalValue / totalNumber;
+    }
+
+    function setOutputValues() {
+      var max = form.querySelector('input').max;
+      var totalWeightedAverage = 0;
+      var totalWeight = 0;
+      var fieldsets = form.querySelectorAll('fieldset');
+      for (var fieldset of fieldsets) {
+        var average = averageInputValues(fieldset);
+        var fieldsetOutput = fieldset.querySelector('output');
+        if (average == undefined) {
+          fieldsetOutput.value = 'You may only enter 0 to ' + max + '.';
+        } else if (isNaN(average)) {
+          fieldsetOutput.value = 'Please enter a grade.';
+        } else {
+          fieldsetOutput.value = 'Average: ' + average.toFixed(1);
+        }
+        totalWeightedAverage += average * fieldset.dataset.weight;
+        totalWeight += Number(fieldset.dataset.weight);
+      }
+      var classActivity = totalWeightedAverage / totalWeight;
+      var formOutput = document.querySelector('form > output');
+      if (isNaN(classActivity)) {
+        formOutput.value = '';
+      } else {
+        formOutput.value = 'Class activity: ' + (classActivity / (max / 100)).toFixed(1);
+      }
+    }
+
+    form.querySelector('[type="button"]').addEventListener('click', setOutputValues);
 
 function detectChange() {
-  var inputs = document.querySelectorAll('input');
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value) {
+  var inputs = form.querySelectorAll('input');
+  for (var input of inputs) {
+    if (input.value) {
       return true;
     }
   }
 }
 
-function calculateAverage(grades) {
-  var total = 0;
-  var count = 0;
-  for (var i = 0; i < grades.length; i++) {
-    if (grades[i].value) {
-      total += Number(grades[i].value);
-      count++;
-    }
-  }
-  return total / count;
-}
-
-function displayAverage(grades) {
-  var avg = calculateAverage(grades);
-  if (isNaN(avg)) {
-    return 'Please enter a grade.';
-  } else {
-    return 'Average: ' + avg.toFixed(1);
-  }
-}
-
-document.getElementById('calculator').addEventListener('click', function() {
-  var listeningGrades = document.querySelectorAll('#listening > input');
-  var listeningAverage = document.getElementById('listeningAverage');
-  listeningAverage.value = displayAverage(listeningGrades);
-
-  var readingGrades = document.querySelectorAll('#reading > input');
-  var readingAverage = document.getElementById('readingAverage');
-  readingAverage.value = displayAverage(readingGrades);
-
-  var writingGrades = document.querySelectorAll('#writing > input');
-  var writingAverage = document.getElementById('writingAverage');
-  writingAverage.value = displayAverage(writingGrades);
-
-  var classActivity = document.getElementById('classActivity');
-  var averagesTotal = (calculateAverage(listeningGrades) * 4 + calculateAverage(readingGrades) * 3 + calculateAverage(writingGrades) * 1) / 8;
-  // skill average * its weight; weights total = 8
-  if (isNaN(averagesTotal)) {
-    classActivity.value = '';
-  } else {
-    classActivity.value = 'Class activity: ' + averagesTotal.toFixed(1);
-  }
-});
-
-document.getElementById('resetter').addEventListener('click', function(event) {
+form.querySelector('[type="reset"]').addEventListener('click', function(event) {
   if (detectChange() && !confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
     event.preventDefault();
   }
@@ -207,7 +207,7 @@ window.addEventListener('beforeunload', function(event) {
     event.returnValue = 'Your changes may be lost.';
   }
 });
-</script>
+  </script>
 </body>
 
 </html>
