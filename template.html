@@ -8,83 +8,129 @@
   <title>Class Activity Calculator</title>
   <base href="https://classactivitycalculator.github.io/">
   <link rel="icon" href="favicon.ico">
-<style>
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-header {
-  padding: 16px;
-  text-align: center;
-  background: linear-gradient(#999, #333);
-}
+    header {
+      padding: 16px;
+      text-align: center;
+      background: linear-gradient(#999, #333);
+    }
 
-header img {
-  width: 48px;
-  height: 48px;
-  vertical-align: bottom;
-}
+    header img {
+      width: 48px;
+      height: 48px;
+      vertical-align: bottom;
+    }
 
-header h1 {
-  font-size: 1.25rem;
-  font-family: 'Times New Roman';
-  color: #FFF;
-  text-shadow: 0 3px #000;
-  letter-spacing: 1px;
-}
+    header h1 {
+      font-size: 1.25rem;
+      font-family: 'Times New Roman';
+      color: #FFF;
+      text-shadow: 0 3px #000;
+      letter-spacing: 1px;
+    }
 
-nav {
-  display: flex;
-  justify-content: center;
-  background: #333;
-  border-top: 2px solid;
-}
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #333;
+      border-top: 2px solid;
+    }
 
-nav a {
-  padding: 12px 6px;
-  font: bold 0.75rem Verdana;
-  color: #FFF;
-  text-decoration: none;
-  outline: 0;
-}
+    nav a {
+      padding: 12px 6px;
+      font: bold 0.75rem Verdana;
+      color: #FFF;
+      text-decoration: none;
+      outline: 0;
+    }
 
-nav a:not(:last-child) {
-  margin-right: 2px;
-}
+    nav a:not(:last-child) {
+      margin-right: 2px;
+    }
 
-nav a:hover,
-nav a:focus,
-#current {
-  border-top: 2px solid;
-  margin-top: -2px;
-}
+    nav a:hover,
+    nav a:focus,
+    #current {
+      border-top: 2px solid;
+      margin-top: -2px;
+    }
 
-form {display: table; margin: 16px auto 32px;}
-fieldset {margin: 16px 0; border: 1px solid #CCC; background: linear-gradient(#FFF, #CCC);}
-legend, input, output, button {font-family: Arial;}
-legend, button {color: #333;}
-legend {padding: 8px 4px;}
-input {width: 40pt;}
-input:invalid {outline: 1px solid red;}
-output {color: #C00;}
-fieldset output {display: block; margin: 6px; font-size: 0.75rem;}
-fieldset output::after {content: "\00A0";}  /* a placeholder */
-form > output {font-size: 0.833rem;}
-[type="reset"], address {float: right;}
+    form {
+      display: table;
+      margin: 16px auto 32px;
+    }
 
-footer {
-  padding: 12px;
-  background: #333;
-  font: 0.75rem Arial;
-  color: #FFF;
-}
+    fieldset {
+      margin: 16px 0;
+      border: 1px solid #CCC;
+      background: linear-gradient(#FFF, #CCC);
+    }
 
-footer a {
-  color: inherit;
-}
-</style>
+    legend,
+    input,
+    output,
+    button {
+      font-family: Arial;
+    }
+
+    legend,
+    button {
+      color: #333;
+    }
+
+    legend {
+      padding: 8px 4px;
+    }
+
+    input {
+      width: 40pt;
+    }
+
+    input:invalid {
+      outline: 1px solid red;
+    }
+
+    output {
+      color: #C00;
+    }
+
+    fieldset output {
+      display: block;
+      margin: 6px;
+      font-size: 0.75rem;
+    }
+
+    fieldset output::after {
+      content: "\00A0";
+    }
+
+    /* a placeholder */
+    form>output {
+      font-size: 0.833rem;
+    }
+
+    [type="reset"],
+    address {
+      float: right;
+    }
+
+    footer {
+      padding: 12px;
+      background: #333;
+      font: 0.75rem Arial;
+      color: #FFF;
+    }
+
+    footer a {
+      color: inherit;
+    }
+  </style>
 </head>
 
 <body>
@@ -99,38 +145,38 @@ footer a {
     <a href="feedback.html">Kids</a>
   </nav>
   <main>
-  <form autocomplete="off">
-    <fieldset data-weight="4">
-      <legend>Listening & Speaking</legend>
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
+    <form autocomplete="off">
+      <fieldset data-weight="4">
+        <legend>Listening & Speaking</legend>
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <output></output>
+      </fieldset>
+      <fieldset data-weight="3">
+        <legend>Reading</legend>
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <output></output>
+      </fieldset>
+      <fieldset data-weight="1">
+        <legend>Writing</legend>
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <output></output>
+      </fieldset>
+      <button type="button">Calculate</button>
       <output></output>
-    </fieldset>
-    <fieldset data-weight="3">
-      <legend>Reading</legend>
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <output></output>
-    </fieldset>
-    <fieldset data-weight="1">
-      <legend>Writing</legend>
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <input type="number" step="any" min="0" max="100">
-      <output></output>
-    </fieldset>
-    <button type="button">Calculate</button>
-    <output></output>
-    <button type="reset">Reset</button>
-  </form>
+      <button type="reset">Reset</button>
+    </form>
   </main>
   <footer>
     Share on <a href="https://t.me/share/url?url=https%3A%2F%2Fclassactivitycalculator.github.io%2F&text=Class%20Activity%20Calculator%3A%20Calculate%20the%20class%20activity%20grades%20of%20the%20ILI%20students." title="Telegram: Share Web Page">Telegram</a> |
@@ -148,8 +194,8 @@ footer a {
         if (!input.validity.valid) {
           return;
         }
-          totalValue += Number(input.value);
-          totalNumber += Boolean(input.value);
+        totalValue += Number(input.value);
+        totalNumber += Boolean(input.value);
       }
       return totalValue / totalNumber;
     }
@@ -183,26 +229,26 @@ footer a {
 
     form.querySelector('[type="button"]').addEventListener('click', setOutputValues);
 
-function detectChange() {
-  var inputs = form.querySelectorAll('input');
-  for (var input of inputs) {
-    if (input.value) {
-      return true;
+    function detectChange() {
+      var inputs = form.querySelectorAll('input');
+      for (var input of inputs) {
+        if (input.value) {
+          return true;
+        }
+      }
     }
-  }
-}
 
-form.querySelector('[type="reset"]').addEventListener('click', function(event) {
-  if (detectChange() && !confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
-    event.preventDefault();
-  }
-});
+    form.querySelector('[type="reset"]').addEventListener('click', function(event) {
+      if (detectChange() && !confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
+        event.preventDefault();
+      }
+    });
 
-window.addEventListener('beforeunload', function(event) {
-  if (detectChange()) {
-    event.returnValue = 'Your changes may be lost.';
-  }
-});
+    window.addEventListener('beforeunload', function(event) {
+      if (detectChange()) {
+        event.returnValue = 'Your changes may be lost.';
+      }
+    });
   </script>
 </body>
 
