@@ -13,7 +13,6 @@
     body {
       margin: 0;
       padding: 0;
-      font-size: 16px;
     }
 
     header {
@@ -61,13 +60,9 @@
       border-top: 2px solid;
       margin-top: -2px;
     }
-
-    main,
-    div {
-      display: flex;
-    }
-
+main {display: flex;}
     form {
+      
       margin: 32px auto;
     }
 
@@ -96,7 +91,11 @@
     }
 
     input {
-      width: 4em;
+      width: 40pt;
+    }
+
+    input:not(:last-of-type) {
+      margin-right: 18px;
     }
 
     input:invalid {
@@ -116,21 +115,15 @@
     fieldset output::after {
       content: "\00A0";
     }
-
     /* a placeholder */
 
-    input,
-    button,
-    div output {
+    form > output {
       font-size: 0.833rem;
     }
 
-    div output {
-      margin: auto 6px;
-    }
-
-    [type="reset"] {
-      margin-left: auto;
+    [type="reset"],
+    address {
+      float: right;
     }
 
     footer {
@@ -142,10 +135,6 @@
 
     footer a {
       color: inherit;
-    }
-
-    address {
-      float: right;
     }
   </style>
 </head>
@@ -168,10 +157,14 @@
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
         <output></output>
       </fieldset>
       <fieldset data-weight="3">
         <legend>Reading</legend>
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
@@ -182,13 +175,13 @@
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
         <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
+        <input type="number" step="any" min="0" max="100">
         <output></output>
       </fieldset>
-      <div>
-        <button type="button">Calculate</button>
-        <output></output>
-        <button type="reset">Reset</button>
-      </div>
+      <button type="button">Calculate</button>
+      <output></output>
+      <button type="reset">Reset</button>
     </form>
   </main>
   <footer>
@@ -232,11 +225,11 @@
         totalWeight += Number(fieldset.dataset.weight);
       }
       var classActivity = totalWeightedAverage / totalWeight;
-      var divOutput = document.querySelector('div output');
+      var formOutput = document.querySelector('form > output');
       if (isNaN(classActivity)) {
-        divOutput.value = '';
+        formOutput.value = '';
       } else {
-        divOutput.value = 'Class activity: ' + (classActivity / (max / 100)).toFixed(1);
+        formOutput.value = 'Class activity: ' + (classActivity / (max / 100)).toFixed(1);
       }
     }
 
@@ -251,13 +244,13 @@
       }
     }
 
-    form.querySelector('[type="reset"]').addEventListener('click', function (event) {
+    form.querySelector('[type="reset"]').addEventListener('click', function(event) {
       if (detectChange() && !confirm('Your changes will be lost.\nAre you sure you want to reset?')) {
         event.preventDefault();
       }
     });
 
-    window.addEventListener('beforeunload', function (event) {
+    window.addEventListener('beforeunload', function(event) {
       if (detectChange()) {
         event.returnValue = 'Your changes may be lost.';
       }
