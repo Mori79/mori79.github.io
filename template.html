@@ -61,8 +61,12 @@
       margin-top: -2px;
     }
 
+    main,
+    div {
+      display: flex;
+    }
+
     form {
-      display: table;
       margin: 32px auto;
     }
 
@@ -90,8 +94,14 @@
       font-size: 0.875rem;
     }
 
+    input,
+    button,
+    div output {
+      font-size: 0.833rem;
+    }
+
     input {
-      width: 40pt;
+      width: 4em;
     }
 
     input:invalid {
@@ -99,12 +109,12 @@
     }
 
     output {
-      margin: 8px 0 8px 6px;
       color: #C00;
     }
 
     fieldset output {
       display: block;
+      margin: 8px 0 8px 6px;
       font-size: 0.75rem;
     }
 
@@ -113,13 +123,8 @@
     }
     /* a placeholder */
 
-    form > output {
-      font-size: 0.833rem;
-    }
-
-    [type="reset"],
-    address {
-      float: right;
+    div output {
+      margin: auto auto auto 6px;
     }
 
     footer {
@@ -131,6 +136,10 @@
 
     footer a {
       color: inherit;
+    }
+
+    address {
+      float: right;
     }
   </style>
 </head>
@@ -175,9 +184,11 @@
         <input type="number" step="any" min="0" max="100">
         <output></output>
       </fieldset>
-      <button type="button">Calculate</button>
-      <output></output>
-      <button type="reset">Reset</button>
+      <div>
+        <button type="button">Calculate</button>
+        <output></output>
+        <button type="reset">Reset</button>
+      </div>
     </form>
   </main>
   <footer>
@@ -215,17 +226,17 @@
         } else if (isNaN(average)) {
           fieldsetOutput.value = 'Please enter a grade.';
         } else {
-          fieldsetOutput.value = 'Average: ' + average.toFixed(1);
+          fieldsetOutput.value = 'avg: ' + average.toFixed(1);
         }
         totalWeightedAverage += average * fieldset.dataset.weight;
         totalWeight += Number(fieldset.dataset.weight);
       }
       var classActivity = totalWeightedAverage / totalWeight;
-      var formOutput = document.querySelector('form > output');
+      var divOutput = form.querySelector('div output');
       if (isNaN(classActivity)) {
-        formOutput.value = '';
+        divOutput.value = '';
       } else {
-        formOutput.value = 'Class activity: ' + (classActivity / (max / 100)).toFixed(1);
+        divOutput.value = 'CA: ' + (classActivity / (max / 100)).toFixed(1);
       }
     }
 
