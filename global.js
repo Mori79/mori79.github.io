@@ -14,6 +14,8 @@
       return totalValue / totalNumber;
     }
 
+    form.querySelector('[type="button"]').addEventListener('click', setOutputValues);
+
     function detectChange() {
       var inputs = form.querySelectorAll('input');
       for (var input of inputs) {
