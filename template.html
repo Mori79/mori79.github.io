@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Calculate the class activity grades of the ILI students.">
   <title>Class Activity Calculator</title>
-  <base href="https://mori79.github.io/">
   <link rel="icon" href="favicon.ico">
   <style>
     html,
@@ -150,9 +149,9 @@
   </header>
   <nav>
     <a href="index.html" id="current">Adults: Old</a>
-    <a href="downloads.html">Adults: New</a>
-    <a href="faq.html">Young Adults</a>
-    <a href="feedback.html">Kids</a>
+    <a href="adults-new.html">Adults: New</a>
+    <a href="young-adults.html">Young Adults</a>
+    <a href="kids.html">Kids</a>
   </nav>
   <main>
     <form autocomplete="off">
@@ -195,9 +194,9 @@
     <a href="https://www.facebook.com/dialog/share?app_id=2194746457255787&href=https%3A%2F%2Fclassactivitycalculator.github.io%2F" title="Post to Facebook">Facebook</a>
     <address><a href="https://t.me/MortezaMirmojarabian" title="Telegram: Contact @MortezaMirmojarabian" rel="author">Give feedback</a></address>
   </footer>
-  <script src="global.js"></script>
   <script>
     function setOutputValues() {
+      var max = form.querySelector('input').max;
       var totalWeightedAverage = 0;
       var totalWeight = 0;
       var fieldsets = form.querySelectorAll('fieldset');
@@ -205,7 +204,7 @@
         var average = averageInputValues(fieldset);
         var fieldsetOutput = fieldset.querySelector('output');
         if (average == undefined) {
-          fieldsetOutput.value = 'You may only enter 0 to 100.';
+          fieldsetOutput.value = 'You may only enter 0 to ' + max + '.';
         } else if (isNaN(average)) {
           fieldsetOutput.value = 'Please enter a grade.';
         } else {
@@ -219,12 +218,11 @@
       if (isNaN(classActivity)) {
         divOutput.value = '';
       } else {
-        divOutput.value = 'CA: ' + classActivity.toFixed(1);
+        divOutput.value = 'CA: ' + (classActivity / (max / 100)).toFixed(1);
       }
     }
-    
-    form.querySelector('[type="button"]').addEventListener('click', setOutputValues);
   </script>
+  <script src="global.js"></script>
 </body>
 
 </html>
