@@ -1,0 +1,13 @@
+{
+"companyName": "Falling Ball",
+"productName": "Falling Ball",
+"dataUrl": "https://sites.google.com/site/111q33444q/slope_ball.data.unityweb",
+"wasmCodeUrl": "https://sites.google.com/site/111q33444q/slope_ball.wasm.code.unityweb",
+"wasmFrameworkUrl": "https://sites.google.com/site/111q33444q/slope_ball.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}
